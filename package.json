@@ -1,0 +1,65 @@
+{
+  "name": "codex-session-kit",
+  "displayName": "Codex Session Kit",
+  "description": "Bootstrap durable project memory for Codex and other AI coding workflows.",
+  "version": "0.1.0",
+  "publisher": "local-dev",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:codexSessionKit.initializeProjectMemoryDocs",
+    "onCommand:codexSessionKit.startSessionFromProjectMemory",
+    "onCommand:codexSessionKit.finishSessionAndUpdateProjectMemory",
+    "onCommand:codexSessionKit.showProjectMemoryStatus"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codexSessionKit.initializeProjectMemoryDocs",
+        "title": "AI: Initialize Project Memory Docs"
+      },
+      {
+        "command": "codexSessionKit.startSessionFromProjectMemory",
+        "title": "AI: Start Session From Project Memory"
+      },
+      {
+        "command": "codexSessionKit.finishSessionAndUpdateProjectMemory",
+        "title": "AI: Finish Session And Update Project Memory"
+      },
+      {
+        "command": "codexSessionKit.showProjectMemoryStatus",
+        "title": "AI: Show Project Memory Status"
+      }
+    ],
+    "configuration": {
+      "title": "Codex Session Kit",
+      "properties": {
+        "codexSessionKit.preferWorkspaceConfig": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefer .vscode/ai-context.json over extension settings when building prompts and initializing docs."
+        },
+        "codexSessionKit.docPaths": {
+          "type": "array",
+          "default": [
+            "docs/repo-summary.md",
+            "docs/architecture.md",
+            "docs/current-work.md",
+            "docs/refactor-roadmap.md",
+            "docs/decisions.md"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Fallback project memory document paths used when no .vscode/ai-context.json file exists."
+        }
+      }
+    }
+  }
+}

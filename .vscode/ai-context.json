@@ -1,0 +1,9 @@
+{
+  "docPaths": [
+    "docs/repo-summary.md",
+    "docs/architecture.md",
+    "docs/current-work.md",
+    "docs/refactor-roadmap.md",
+    "docs/decisions.md"
+  ]
+}
