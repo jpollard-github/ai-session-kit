@@ -1,10 +1,10 @@
 # General Documentation
 
-![Codex Session Kit](../media/codex-session-kit.webp)
+![AI Session Kit](../media/ai-session-kit.webp)
 
 ## Philosophy
 
-Codex Session Kit is built around one practical belief:
+AI Session Kit is built around one practical belief:
 
 > repo scans are evidence, not understanding.
 

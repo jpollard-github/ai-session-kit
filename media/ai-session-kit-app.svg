@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <rect x="96" y="96" width="832" height="832" rx="184" fill="#0F5C63" />
+  <circle cx="512" cy="360" r="292" fill="#16848D" opacity="0.28" />
+  <path
+    d="M300 332C300 271.249 349.249 222 410 222H546C606.751 222 656 271.249 656 332V348H674C730.333 348 776 393.667 776 450V571C776 627.333 730.333 673 674 673H525L418 754V673H314C257.667 673 212 627.333 212 571V450C212 393.667 257.667 348 314 348H300V332Z"
+    fill="#F7FBFC"
+  />
+  <path
+    d="M355 515L440 442L530 487L616 402"
+    stroke="#0E5F66"
+    stroke-width="42"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="355" cy="515" r="31" fill="#0E5F66" />
+  <circle cx="440" cy="442" r="31" fill="#0E5F66" />
+  <circle cx="530" cy="487" r="31" fill="#0E5F66" />
+  <circle cx="616" cy="402" r="31" fill="#0E5F66" />
+  <path
+    d="M737 235L765 298L828 326L765 354L737 417L709 354L646 326L709 298L737 235Z"
+    fill="#FDBA4D"
+  />
+</svg>

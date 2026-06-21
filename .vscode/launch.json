@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Codex Session Kit",
+      "name": "Run AI Session Kit",
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",

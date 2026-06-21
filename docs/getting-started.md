@@ -1,8 +1,8 @@
 # Getting Started
 
-![Codex Session Kit](../media/codex-session-kit.webp)
+![AI Session Kit](../media/ai-session-kit.webp)
 
-Codex Session Kit is now handoff-first. The goal is not to auto-write great docs from repo scans. The goal is to help you leave a short, accurate handoff that the next AI session can trust.
+AI Session Kit is handoff-first. The goal is not to auto-write great docs from repo scans. The goal is to help you leave a short, accurate handoff that the next AI session can trust.
 
 ## Default Docs
 
@@ -16,7 +16,7 @@ The first three are human notes. The snapshot is machine-generated repo telemetr
 ## First Run
 
 1. Open a real repository folder in VS Code.
-2. Open the `Codex` sidebar.
+2. Open the `AI Kit` sidebar.
 3. Run `Initialize Handoff Docs`.
 4. Fill in the human docs with the repo-specific context that code scanning cannot infer.
 5. Run `Start Session From Project Memory` before a fresh AI conversation.

@@ -1166,7 +1166,7 @@ function summarizeExtensions(fileStats) {
 
 function buildGeneratedDocContent(doc, snapshot) {
   const fileName = path.basename(doc.relativePath);
-  const header = "> Auto-generated repo telemetry. This section is managed by Codex Session Kit.";
+  const header = "> Auto-generated repo telemetry. This section is managed by AI Session Kit.";
 
   const sectionMap = {
     "project-memory-snapshot": buildProjectMemorySnapshot(snapshot),
@@ -1915,11 +1915,11 @@ class ProjectMemoryViewProvider {
 
     const heroItems = [
       createHeroItem(
-        "Codex Session Kit",
+        "AI Session Kit",
         "Durable AI handoffs for real repositories",
         "Open the general guide and philosophy for this extension.",
         "codexSessionKit.openGeneralDocumentation",
-        path.join(this.extensionPath, "media", "codex-session-kit.svg")
+        path.join(this.extensionPath, "media", "ai-session-kit.svg")
       ),
       createSectionItem("Start Here", "Quick onboarding and reference"),
       createCommandItem("Open Getting Started", "Set up the extension and run your first workflow", "codexSessionKit.openGettingStarted", "rocket"),

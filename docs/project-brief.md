@@ -1,8 +1,8 @@
 # Project Brief
 
 ## Repo Purpose
-- `codex-session-kit` is a VS Code extension for durable AI handoffs.
-- Its main job is to help a repo leave short, accurate notes that future Codex sessions can trust.
+- `ai-session-kit` is a VS Code extension for durable AI handoffs and documentation review.
+- Its main job is to help a repo leave short, accurate notes and README-aligned guidance that future AI sessions can trust.
 
 ## How To Work In This Repo
 - Treat README as the user-facing product contract.

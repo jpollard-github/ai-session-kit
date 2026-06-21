@@ -1,19 +1,19 @@
 {
-  "name": "codex-session-kit",
-  "displayName": "Codex Session Kit",
-  "description": "Bootstrap durable project memory for Codex and other AI coding workflows.",
+  "name": "ai-session-kit",
+  "displayName": "AI Session Kit",
+  "description": "Bootstrap durable handoffs and living docs for AI coding workflows.",
   "version": "0.3.0",
   "publisher": "local-dev",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpollard-github/codex-session-kit.git"
+    "url": "https://github.com/jpollard-github/ai-session-kit.git"
   },
-  "homepage": "https://github.com/jpollard-github/codex-session-kit",
-  "icon": "media/codex-session-kit.png",
+  "homepage": "https://github.com/jpollard-github/ai-session-kit",
+  "icon": "media/ai-session-kit.png",
   "scripts": {
     "lint:extension": "node --check src/extension.js && node -e \"JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log('package.json ok')\"",
-    "package:vsix": "mkdir -p vsix && vsce package --out vsix/codex-session-kit-v$npm_package_version.vsix",
+    "package:vsix": "mkdir -p vsix && vsce package --out vsix/ai-session-kit-v$npm_package_version.vsix",
     "publish:check": "node scripts/publish-preflight.js",
     "publish:vsix": "npm run publish:check && npm run lint:extension && npm run package:vsix",
     "publish:marketplace": "npm run publish:check && npm run lint:extension && vsce publish"
@@ -104,8 +104,8 @@
       "activitybar": [
         {
           "id": "codexSessionKit",
-          "title": "Codex",
-          "icon": "media/codex-session-kit.svg"
+          "title": "AI Kit",
+          "icon": "media/ai-session-kit.svg"
         }
       ]
     },
@@ -159,7 +159,7 @@
       }
     ],
     "configuration": {
-      "title": "Codex Session Kit",
+      "title": "AI Session Kit",
       "properties": {
         "codexSessionKit.preferWorkspaceConfig": {
           "type": "boolean",

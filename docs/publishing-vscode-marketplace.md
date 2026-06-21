@@ -1,6 +1,6 @@
 # Publishing To The VS Code Marketplace
 
-This guide is for publishing `Codex Session Kit` to the Microsoft VS Code Extension Marketplace after you create the real GitHub repo and Marketplace publisher.
+This guide is for publishing `AI Session Kit` to the Microsoft VS Code Extension Marketplace after you create the real GitHub repo and Marketplace publisher.
 
 ## What To Change Before First Publish
 
@@ -17,9 +17,9 @@ Example:
   "publisher": "your-publisher-id",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-name/codex-session-kit.git"
+    "url": "https://github.com/your-name/ai-session-kit.git"
   },
-  "homepage": "https://github.com/your-name/codex-session-kit"
+  "homepage": "https://github.com/your-name/ai-session-kit"
 }
 ```
 
@@ -32,10 +32,36 @@ Why that matters:
 
 This repo already includes Marketplace-friendly assets:
 
-- `media/codex-session-kit.png`
+- `media/ai-session-kit.png`
   - Used as the extension icon in `package.json`
-- `media/codex-session-kit.webp`
-  - Used in `README.md` as a preview image
+- `media/ai-session-kit.webp`
+  - Used in the repo docs as a preview image
+
+If the local folder or GitHub repo still uses the old `codex-session-kit` name during the transition, that is fine temporarily. Update the manifest URLs before publishing so Marketplace metadata points at the final repo name.
+
+## GitHub And Local Rename Checklist
+
+For the rebrand, the safest order is:
+
+1. Rename the GitHub repository from `codex-session-kit` to `ai-session-kit`.
+2. Confirm the new repo URL works in the browser.
+3. In your local clone, update the remote URL:
+
+```bash
+git remote set-url origin git@github.com:jpollard-github/ai-session-kit.git
+```
+
+4. Optionally rename the local folder from `codex-session-kit` to `ai-session-kit`.
+5. Reopen the renamed folder in VS Code.
+6. Run the extension host and packaging checks again.
+
+If you prefer HTTPS remotes, use:
+
+```bash
+git remote set-url origin https://github.com/jpollard-github/ai-session-kit.git
+```
+
+Renaming the local folder is optional for Git to work, but it is worth doing so the workspace name, terminal path, and screenshots all match the new product name.
 
 ## Local Publish Helper Scripts
 
