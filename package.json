@@ -13,7 +13,7 @@
   "icon": "media/codex-session-kit.png",
   "scripts": {
     "lint:extension": "node --check src/extension.js && node -e \"JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log('package.json ok')\"",
-    "package:vsix": "mkdir -p .vsix && vsce package --out .vsix/codex-session-kit-v$npm_package_version.vsix",
+    "package:vsix": "mkdir -p vsix && vsce package --out vsix/codex-session-kit-v$npm_package_version.vsix",
     "publish:check": "node scripts/publish-preflight.js",
     "publish:vsix": "npm run publish:check && npm run lint:extension && npm run package:vsix",
     "publish:marketplace": "npm run publish:check && npm run lint:extension && vsce publish"

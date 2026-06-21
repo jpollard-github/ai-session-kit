@@ -116,6 +116,7 @@ If it only refreshes files and timestamps, it is not doing its job.
 - `npm run lint:extension`
 - `npm run publish:check`
 - `npm run package:vsix`
+  - Writes the built extension to `vsix/` so it is easy to find in Finder when installing locally.
 
 ## Current Limitations
 
