@@ -8,7 +8,7 @@ The extension no longer tries to pretend shallow repo scans are durable document
 
 ## What It Does
 
-- `Project Memory: Initialize Handoff Docs`
+- `AI Session: Initialize Handoff Docs`
   - Creates `.vscode/ai-context.json` if it does not exist.
   - Creates a lean default doc set:
     - `docs/project-brief.md`
@@ -16,7 +16,7 @@ The extension no longer tries to pretend shallow repo scans are durable document
     - `docs/decisions.md`
     - `docs/project-memory-snapshot.md`
   - Fills only the snapshot file automatically.
-- `Project Memory: Prepare Handoff Review`
+- `AI Session: Prepare Handoff Review`
   - Refreshes the machine-generated snapshot.
   - Opens a working review/checklist document with:
     - what changed
@@ -24,17 +24,18 @@ The extension no longer tries to pretend shallow repo scans are durable document
     - candidate notes worth confirming
     - questions to answer before writing the final handoff
     - README review suggestions when user-facing behavior likely changed
-- `Project Memory: Generate Session Handoff`
+- `AI Session: Generate Session Handoff`
   - Creates the cleaner, reusable handoff draft from git status, recent commits, decision-like signals, and TODO-style additions.
   - Can append suggested notes into `current-work.md` and `decisions.md`.
   - Can prompt you to review `README.md` when changes look material to users.
-- `Project Memory: Validate Memory Docs`
+- `AI Session: Validate Memory Docs`
   - Checks whether the tracked docs still look usable.
   - Flags missing docs, starter-template docs, malformed snapshot sections, branch-switch drift, and likely review gaps.
-- `Project Memory: Start Session From Project Memory`
+- `AI Session: Start Session From Handoff Docs`
   - Copies a prompt that tells your next AI session to read the tracked docs first.
-- `Project Memory: Finish Session And Update Project Memory`
-  - Copies a finish prompt that explicitly asks for a concise handoff and a README update when user-facing changes are material.
+- `AI Session: Finish Session And Update Handoff Docs`
+  - Copies a finish prompt that explicitly asks for a concise handoff.
+  - Prompts you to review `README.md` when current repo signals suggest user-facing changes.
 
 ## Default Files
 
@@ -69,10 +70,10 @@ The new workflow is handoff-first:
 
 ## Which Command To Use
 
-- Use `Project Memory: Prepare Handoff Review` when you want a checkpoint.
+- Use `AI Session: Prepare Handoff Review` when you want a checkpoint.
   - It refreshes the machine snapshot first.
   - It is better for asking “what should I capture?” than for producing the final wording.
-- Use `Project Memory: Generate Session Handoff` when you want the final draft.
+- Use `AI Session: Generate Session Handoff` when you want the final draft.
   - It does not exist mainly to refresh telemetry.
   - It is better for a reusable summary you might paste into a future AI session or append into `current-work.md`.
 

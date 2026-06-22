@@ -2,7 +2,7 @@
   "name": "ai-session-kit",
   "displayName": "AI Session Kit",
   "description": "Bootstrap durable handoffs and living docs for AI coding workflows.",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "publisher": "local-dev",
   "license": "MIT",
   "repository": {
@@ -45,58 +45,58 @@
     "commands": [
       {
         "command": "codexSessionKit.initializeProjectMemoryDocs",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Initialize Handoff Docs"
       },
       {
         "command": "codexSessionKit.startSessionFromProjectMemory",
-        "category": "Project Memory",
-        "title": "Start Session From Project Memory"
+        "category": "AI Session",
+        "title": "Start Session From Handoff Docs"
       },
       {
         "command": "codexSessionKit.updateMemoryDocsNow",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Prepare Handoff Review"
       },
       {
         "command": "codexSessionKit.upgradeAiContextConfigToLatestDefaults",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Upgrade AI Context Config To Latest Defaults"
       },
       {
         "command": "codexSessionKit.generateSessionSummary",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Generate Session Handoff"
       },
       {
         "command": "codexSessionKit.openGettingStarted",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Open Getting Started"
       },
       {
         "command": "codexSessionKit.openGeneralDocumentation",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Open General Documentation"
       },
       {
         "command": "codexSessionKit.validateMemoryDocs",
-        "category": "Project Memory",
+        "category": "AI Session",
         "title": "Validate Memory Docs"
       },
       {
         "command": "codexSessionKit.finishSessionAndUpdateProjectMemory",
-        "category": "Project Memory",
-        "title": "Finish Session And Update Project Memory"
+        "category": "AI Session",
+        "title": "Finish Session And Update Handoff Docs"
       },
       {
         "command": "codexSessionKit.showProjectMemoryStatus",
-        "category": "Project Memory",
-        "title": "Show Project Memory Status"
+        "category": "AI Session",
+        "title": "Show Handoff Docs Status"
       },
       {
         "command": "codexSessionKit.refreshProjectMemoryView",
-        "category": "Project Memory",
-        "title": "Refresh Project Memory View",
+        "category": "AI Session",
+        "title": "Refresh AI Session View",
         "icon": "$(refresh)"
       }
     ],
@@ -104,7 +104,7 @@
       "activitybar": [
         {
           "id": "codexSessionKit",
-          "title": "AI Kit",
+          "title": "AI Session",
           "icon": "media/ai-session-kit.svg"
         }
       ]

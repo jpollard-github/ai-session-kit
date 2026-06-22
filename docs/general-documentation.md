@@ -33,6 +33,8 @@ Machine telemetry is where evidence lives:
 - package metadata
 - coarse repo structure
 
+The public product is now branded as AI Session Kit. Internally, some stable identifiers still use legacy `codexSessionKit` naming so existing commands, settings, and managed snapshot blocks keep working without migration.
+
 ## Why This Changed
 
 The earlier workflow updated multiple docs with factual snapshots, but that output was often too shallow to be trusted as durable project memory.
@@ -43,6 +45,7 @@ The handoff-first workflow is narrower:
 - draft one useful handoff
 - update only the human docs that matter
 - optionally review README.md when user-facing behavior changed
+- stay provider-agnostic by copying prompts instead of integrating directly with one AI tool
 
 ## Two Similar Commands, Different Jobs
 
@@ -75,6 +78,16 @@ The extension now tries to catch:
 - likely README review needs
 
 It still does not claim semantic certainty.
+
+## Documentation Scope
+
+The docs workflow is intentionally opinionated:
+
+- `README.md` is the user-facing product contract
+- `docs/project-brief.md`, `docs/current-work.md`, and `docs/decisions.md` are the durable human memory
+- `docs/project-memory-snapshot.md` is machine-generated telemetry that supports review, not authorship
+
+That separation is what keeps the extension useful instead of noisy.
 
 ## What Success Looks Like
 

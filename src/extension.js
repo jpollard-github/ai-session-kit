@@ -47,7 +47,7 @@ function activate(context) {
     const branchTracking = await syncProjectMemoryBranchState(workspaceFolder, projectMemory);
     const existingCount = projectMemory.docs.filter((doc) => doc.exists).length;
     const totalCount = projectMemory.docs.length;
-    statusBarItem.text = `$(book) Project Memory ${existingCount}/${totalCount}`;
+    statusBarItem.text = `$(book) AI Session ${existingCount}/${totalCount}`;
     statusBarItem.tooltip = buildStatusTooltip(projectMemory);
     statusBarItem.show();
     projectMemoryViewProvider.refresh();
@@ -316,11 +316,29 @@ function activate(context) {
       }
 
       const projectMemory = await resolveProjectMemory(workspaceFolder);
+      await syncProjectMemoryBranchState(workspaceFolder, projectMemory);
+      const gitFacts = getGitFacts(workspaceFolder.uri.fsPath);
+      const userFacingSignals = detectUserFacingChangeSignals(workspaceFolder.uri.fsPath, gitFacts.changedFiles);
+      const readmeRecommendation = buildReadmeRecommendation(workspaceFolder.uri.fsPath, userFacingSignals);
       await updatePromptState(workspaceFolder, "lastFinishPromptAt");
       const prompt = buildFinishPrompt(projectMemory.docs);
       await vscode.env.clipboard.writeText(prompt);
       await refreshStatusBar();
-      vscode.window.showInformationMessage("Finish-session prompt copied to clipboard.");
+      if (readmeRecommendation.shouldReview && readmeRecommendation.readmePath) {
+        const openReadmeAction = "Open README";
+        const skipAction = "Skip README";
+        const choice = await vscode.window.showInformationMessage(
+          `Finish-session prompt copied. README.md may need an update because ${readmeRecommendation.reasons.join("; ")}.`,
+          openReadmeAction,
+          skipAction
+        );
+        if (choice === openReadmeAction) {
+          const readmeDoc = await vscode.workspace.openTextDocument(vscode.Uri.file(readmeRecommendation.readmePath));
+          await vscode.window.showTextDocument(readmeDoc);
+        }
+      } else {
+        vscode.window.showInformationMessage("Finish-session prompt copied to clipboard. README review does not look necessary from current signals.");
+      }
     })
   );
 
@@ -699,7 +717,7 @@ function buildHandoffReviewMarkdown(summary, projectMemory) {
     ...toBullets(buildReviewQuestions(summary)),
     "",
     "## If You Want The Cleaner Output",
-    "- Run `Project Memory: Generate Session Handoff` for the more polished, reusable handoff document.",
+    "- Run `AI Session: Generate Session Handoff` for the more polished, reusable handoff document.",
   ].join("\n");
 }
 
@@ -745,7 +763,7 @@ function buildInitialDocShell(doc, workspaceName) {
       "Machine-generated repo telemetry. Refresh this file when you want a fresh scan of the workspace before writing a handoff.",
       "",
       `${AUTO_START}`,
-      `> Auto-generated snapshot for ${workspaceName}. Run \`Project Memory: Prepare Handoff Review\` to refresh the repo scan.`,
+      `> Auto-generated snapshot for ${workspaceName}. Run \`AI Session: Prepare Handoff Review\` to refresh the repo scan.`,
       `${AUTO_END}`,
       "",
     ].join("\n");
@@ -1487,7 +1505,7 @@ function getNewestRepoChangeTimestamp(snapshot) {
 
 function buildValidationReport(validation) {
   const lines = [
-    "# Project Memory Validation",
+    "# AI Session Validation",
     "",
     `Workspace: \`${validation.workspaceName}\``,
     `Issues found: ${validation.summary.issueCount}`,
@@ -1529,7 +1547,7 @@ function buildValidationReport(validation) {
   }
 
   lines.push("## Guidance", "");
-  lines.push("- Use `Project Memory: Prepare Handoff Review` to refresh the snapshot and review the suggested handoff.");
+  lines.push("- Use `AI Session: Prepare Handoff Review` to refresh the snapshot and review the suggested handoff.");
   lines.push("- Add or expand human notes when a doc still contains starter prompts.");
   if (validation.readmeRecommendation.shouldReview) {
     lines.push(`- Review README.md because ${validation.readmeRecommendation.reasons.join("; ")}.`);
@@ -1942,7 +1960,7 @@ class ProjectMemoryViewProvider {
       ...heroItems,
       createSectionItem("Daily Workflow", "Start, review, hand off, and finish"),
       createCommandItem(
-        "Start Session From Project Memory",
+        "Start Session From Handoff Docs",
         `Copy the start-session prompt${formatOptionalSuffix(projectMemory.state.lastStartPromptAt, "last used")}`,
         "codexSessionKit.startSessionFromProjectMemory",
         "play"
@@ -1960,7 +1978,7 @@ class ProjectMemoryViewProvider {
         "sync"
       ),
       createCommandItem(
-        "Finish Session And Update Project Memory",
+        "Finish Session And Update Handoff Docs",
         `Copy the finish-session prompt${formatOptionalSuffix(projectMemory.state.lastFinishPromptAt, "last used")}`,
         "codexSessionKit.finishSessionAndUpdateProjectMemory",
         "check"
@@ -1976,7 +1994,7 @@ class ProjectMemoryViewProvider {
           ]
         : [createInfoItem("Validation: Healthy", "The tracked handoff docs look usable", "check")]),
       createInfoItem(`Branch: ${formatBranchName(projectMemory.currentBranch)}`, buildBranchStatusSummary(projectMemory), "git-branch"),
-      createCommandItem("Show Project Memory Status", "Open a status summary for the configured memory docs", "codexSessionKit.showProjectMemoryStatus", "list-tree"),
+      createCommandItem("Show Handoff Docs Status", "Open a status summary for the configured memory docs", "codexSessionKit.showProjectMemoryStatus", "list-tree"),
       createCommandItem("Validate Memory Docs", "Check whether the handoff docs still look usable", "codexSessionKit.validateMemoryDocs", "pass"),
       createSectionItem("Setup & Maintenance", "Initialize, migrate, and tune"),
       createCommandItem("Initialize Handoff Docs", "Create the default handoff docs and starter prompts", "codexSessionKit.initializeProjectMemoryDocs", "new-file"),
@@ -2053,7 +2071,7 @@ function createDocItem(doc) {
   if (doc.exists) {
     item.command = {
       command: "vscode.open",
-      title: "Open Project Memory Doc",
+      title: "Open Handoff Doc",
       arguments: [vscode.Uri.file(doc.absolutePath)],
     };
   }
