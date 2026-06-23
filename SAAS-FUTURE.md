@@ -1,5 +1,164 @@
 # SaaS Future
 
+## Project Memory SaaS: Actual Product Shape
+
+This SaaS should not be framed as "AI memory" in the abstract. Based on the original AI Session Kit spec, the actual product is a hosted, durable project-handoff system for software teams.
+
+The core value is:
+
+- keep durable project context outside disposable chats
+- help each new AI or human session start from trusted project docs
+- separate human truth from machine-generated repo evidence
+- make handoffs, active work, decisions, and repo state easy to review over time
+
+### What The SaaS Actually Does
+
+#### Core Product
+
+- Hosted project workspaces
+- Durable project memory docs per project:
+  - project brief
+  - current work
+  - decisions
+  - project memory snapshot
+- Session handoff generation
+- Session history and summaries
+- Architecture and repo snapshots
+- Change tracking and changelog-style history
+- Repo onboarding flow for new contributors or new AI sessions
+
+#### Workflow Features Carried Over From The Original Spec
+
+- A handoff-first workflow, not a generic AI chat product
+- Human-maintained docs stay the source of truth
+- Machine-generated repo scans are evidence, not meaning
+- Review-oriented summaries before final handoff generation
+- Validation that flags missing, stale, weak, or inconsistent project memory
+- Provider-agnostic output that can be used with any AI tool
+
+#### SaaS MVP Features
+
+- User accounts
+- Create and manage projects
+- Store and edit the four core memory docs in the browser
+- Generate a reusable session handoff from repo metadata and recent changes
+- Save session summaries to a project timeline
+- Upload or sync basic repo metadata
+- Generate a machine snapshot of branch, changed files, recent activity, and package facts
+- Onboarding view that tells a new human or AI session what to read first
+- Validation/status view for doc freshness and missing project memory
+
+#### Phase 2 Features
+
+- GitHub repo connection and automatic sync jobs
+- Better architecture snapshots and system-overview pages
+- Decision extraction suggestions
+- Current-work and changelog suggestions
+- Team workspaces and shared project access
+- Comments, review, and approvals around generated handoffs
+- README and public-doc review suggestions when user-facing behavior changes
+
+#### Phase 3 Features
+
+- Multi-session project history and searchable memory
+- AI handoff generation across branches, PRs, and releases
+- Organization-level memory across multiple repos
+- Cross-repo onboarding for teams
+- Background jobs for richer indexing and summarization
+- Billing, plan enforcement, and usage controls
+
+### Who It Is For
+
+- Solo developers who use AI heavily and need continuity between sessions
+- Indie hackers managing multiple products
+- Small engineering teams that want better project handoffs without heavy process
+
+### Why This Fits The Existing Product
+
+This is a natural extension of what AI Session Kit already proves:
+
+- tracked durable docs
+- session-start prompts
+- session-finish prompts
+- handoff review workflows
+- generated session handoffs
+- machine snapshots
+- validation of project-memory quality
+
+The SaaS is not a new direction. It is the hosted, multi-user version of the workflow the extension already validates locally.
+
+## TODO Roadmap
+
+### Phase 0: Product Definition
+
+- [ ] Lock the product name and positioning around "hosted project memory" or "project handoff system"
+- [ ] Define the core product promise in one sentence
+- [ ] Freeze the four core doc roles as the initial product model
+- [ ] Decide what stays provider-agnostic versus what becomes AI-assisted
+- [ ] Write the SaaS MVP spec based on the current extension workflow, not a generic AI dashboard
+
+### Phase 1: SaaS Foundation
+
+- [ ] Create a new SaaS repo
+- [ ] Set up Next.js, TypeScript, PostgreSQL, Prisma, auth, and Stripe scaffolding
+- [ ] Create the base data model for users, projects, docs, sessions, and snapshots
+- [ ] Implement project creation and basic dashboard navigation
+- [ ] Add a simple project settings model for tracked docs and repo metadata
+
+### Phase 2: Core Project Memory
+
+- [ ] Implement CRUD for `project-brief`, `current-work`, `decisions`, and `project-memory-snapshot`
+- [ ] Build a project overview page showing those docs as the source of truth
+- [ ] Add timestamps, freshness indicators, and edit history
+- [ ] Add doc validation for missing docs, untouched templates, and stale memory
+- [ ] Create an onboarding page that tells a new user or AI session what to read first
+
+### Phase 3: Handoff Workflow
+
+- [ ] Build a "prepare handoff review" flow in the web app
+- [ ] Build a "generate session handoff" flow that produces a cleaner reusable summary
+- [ ] Save each handoff and summary into a project timeline
+- [ ] Add suggested updates for `current-work` and `decisions`
+- [ ] Add README review prompts when the system detects likely user-facing changes
+
+### Phase 4: Repo Sync And Snapshots
+
+- [ ] Add GitHub connection
+- [ ] Sync branch, changed files, recent commits, and coarse repo structure
+- [ ] Generate machine snapshots from synced repo data
+- [ ] Add architecture snapshot summaries that stay explicitly heuristic
+- [ ] Add changelog-style views from session and repo activity
+
+### Phase 5: Team Features
+
+- [ ] Add organizations or team workspaces
+- [ ] Add shared access, roles, and permissions
+- [ ] Add review, comments, and approval flows around generated handoffs
+- [ ] Add project ownership and handoff accountability
+- [ ] Add multi-repo onboarding flows for small teams
+
+### Phase 6: Monetization And Scale
+
+- [ ] Launch Free, `$9/month`, and `$19/month` plans
+- [ ] Define usage limits by projects, sessions, collaborators, and history retention
+- [ ] Add billing, plan enforcement, and upgrade UX
+- [ ] Add background jobs for larger repos and richer summaries
+- [ ] Add analytics to learn which workflows actually retain users
+
+### First MVP Cut To Ship Fast
+
+If the goal is highest-probability validation, ship this first:
+
+1. Hosted projects
+2. Four durable memory docs
+3. Manual doc editing
+4. A generated project snapshot
+5. A generated session handoff
+6. A simple project timeline
+7. Basic validation and onboarding
+
+That is enough to test whether users want durable project memory before building deep repo sync, team collaboration, or heavier AI features.
+
 ## Recommendation
 
 Build the SaaS offering in a new repository.
